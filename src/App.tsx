@@ -397,9 +397,8 @@ function App() {
 
           <div className="integration-band">
             {integrations.map((integration) => (
-              <div className="integration-card" key={integration.name}>
+              <div className="integration-card" key={integration.name} aria-label={integration.name} title={integration.name}>
                 <img src={integration.logo} alt={integration.alt} />
-                <span>{integration.name}</span>
               </div>
             ))}
           </div>
