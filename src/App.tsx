@@ -21,60 +21,6 @@ type MediaFrameProps = {
 
 const imagePath = (fileName: string) => `${import.meta.env.BASE_URL}images/${fileName}`;
 
-const showcaseImages = [
-  {
-    title: "Angebot im Kundenportal",
-    image: imagePath("tw365-doc-overview.png"),
-    imageAlt: "Digitales Angebot in TeamWork 365",
-    size: "large",
-  },
-  {
-    title: "E-Mail-Vorschau",
-    image: imagePath("tw365-doc-mail-preview.png"),
-    imageAlt: "E-Mail-Vorschau in TeamWork 365",
-    size: "small",
-  },
-  {
-    title: "Kundenauftrag aus Angebot",
-    image: imagePath("tw365-doc-customer-order.png"),
-    imageAlt: "Weiterführung zum Kundenauftrag in SAP Business One",
-    size: "small",
-  },
-];
-
-const slideshowImages = [
-  {
-    title: "Digitales Angebot",
-    description: "Kunden sehen das Angebot direkt im Browser und können reagieren.",
-    image: imagePath("tw365-doc-overview.png"),
-    imageAlt: "Digitales Angebot in TeamWork 365",
-  },
-  {
-    title: "Mengen & Alternativen",
-    description: "Positionen lassen sich anpassen, ohne das Ursprungsangebot in SAP zu verändern.",
-    image: imagePath("tw365-doc-edit-quantity.png"),
-    imageAlt: "Anpassung von Mengen im digitalen Angebot",
-  },
-  {
-    title: "Beauftragen",
-    description: "Annahme mit Pflichtangaben, Rechtsbestätigung und Bemerkung.",
-    image: imagePath("tw365-doc-order-popup.png"),
-    imageAlt: "Beauftragen-Popup im digitalen Angebot",
-  },
-  {
-    title: "E-Mail-Vorschau",
-    description: "Versand, Vorschau und Freigabe laufen direkt am Beleg.",
-    image: imagePath("tw365-doc-mail-preview.png"),
-    imageAlt: "E-Mail-Vorschau im digitalen Angebot",
-  },
-  {
-    title: "Weiterführung",
-    description: "Das Angebot wird direkt in einen Kundenauftrag in SAP Business One überführt.",
-    image: imagePath("tw365-doc-customer-order.png"),
-    imageAlt: "Kundenauftrag auf Basis des Angebots in SAP Business One",
-  },
-];
-
 const functionStories = [
   {
     eyebrow: "SAP Web Client",
@@ -144,26 +90,32 @@ const stats = [
 
 const digitalDocumentSteps = [
   {
-    title: "Beauftragen, ändern oder ablehnen",
-    text: "Im externen Angebot kann der Empfänger das Angebot annehmen, mit Änderungen beantworten oder ablehnen. Für jede Reaktion werden Name, E-Mail und optional eine Bemerkung erfasst.",
+    title: "1. Angebot öffnen und reagieren",
+    text: "Im externen Angebot kann der Empfänger das Angebot beauftragen, bearbeiten oder ablehnen. Der Verlauf-Button zeigt, dass sämtliche Interaktionen später nachvollziehbar bleiben.",
+    image: imagePath("tw365-doc-overview.png"),
+    imageAlt: "Digitales Angebot mit Reaktionsmöglichkeiten in TeamWork 365",
+  },
+  {
+    title: "2. Beauftragen, bearbeiten oder ablehnen",
+    text: "Bei der Interaktion öffnet sich ein Popup. Name und E-Mail sind Pflichtfelder, zusätzlich kann eine Bemerkung hinterlegt werden. Außerdem werden rechtliche Bestimmungen angezeigt und müssen bestätigt werden.",
     image: imagePath("tw365-doc-order-popup.png"),
     imageAlt: "Beauftragen-Popup mit Pflichtfeldern in TeamWork 365",
   },
   {
-    title: "Mengen und Alternativartikel anpassen",
-    text: "Bestimmte Positionen können im Angebot geändert oder als Alternativartikel gewählt werden, ohne dass sich das Ursprungsangebot im SAP verändert. Zwischensummen und Gesamtsummen bleiben dabei unverändert.",
+    title: "3. Mengen und Alternativartikel anpassen",
+    text: "Im externen Angebot können Mengen bestimmter Artikel geändert oder Alternativartikel gewählt werden. Das ursprüngliche Angebot in SAP bleibt dabei unverändert, daher ändern sich Zwischen- und Gesamtsummen nicht.",
     image: imagePath("tw365-doc-edit-quantity.png"),
     imageAlt: "Mengenanpassung im digitalen Angebot",
   },
   {
-    title: "Änderungsverlauf nachvollziehen",
-    text: "Der Verlauf dokumentiert, wann der Link geöffnet wurde, welche Mengen geändert wurden, ob das Angebot angenommen oder abgelehnt wurde und welche Kommentare hinterlegt sind.",
+    title: "4. Änderungsverlauf nachvollziehen",
+    text: "Im Änderungsverlauf wird dokumentiert, wann der Link geöffnet wurde, welche Mengen geändert wurden, ob das Angebot angenommen oder abgelehnt wurde und welche Kommentare der Kunde hinterlassen hat.",
     image: imagePath("tw365-doc-overview.png"),
     imageAlt: "Übersicht des digitalen Angebots mit Verlauf",
   },
   {
-    title: "Zum Kundenauftrag weiterführen",
-    text: "Aus dem Angebot wird direkt ein Entwurf für einen Kundenauftrag in SAP Business One erzeugt. Positionen, Mengen, Preise und Frachtkosten werden automatisch übernommen, optional auch geänderte Mengen und Alternativartikel.",
+    title: "5. Weiterführen zum Kundenauftrag",
+    text: "Über den Button „Weiterführen zum Kundenauftrag“ wird direkt ein Entwurf in SAP Business One erzeugt. Positionen, Mengen, Preise und Frachtkosten werden übernommen. Optional können geänderte Mengen und Alternativartikel mitgeführt werden.",
     image: imagePath("tw365-doc-customer-order.png"),
     imageAlt: "Kundenauftrag in SAP Business One auf Basis des Angebots",
   },
@@ -206,7 +158,7 @@ function App() {
   const [formState, setFormState] = useState<FormState>(initialFormState);
   const [status, setStatus] = useState<"idle" | "success">("idle");
   const [activeImage, setActiveImage] = useState<{ src: string; alt: string } | null>(null);
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeDetailIndex, setActiveDetailIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -251,12 +203,31 @@ function App() {
   }, [activeImage]);
 
   useEffect(() => {
-    const intervalId = window.setInterval(() => {
-      setActiveSlide((current) => (current + 1) % slideshowImages.length);
-    }, 4500);
+    if (activeDetailIndex === null) {
+      return undefined;
+    }
 
-    return () => window.clearInterval(intervalId);
-  }, []);
+    document.body.style.overflow = "hidden";
+
+    const handleArrowNavigation = (event: KeyboardEvent) => {
+      if (event.key === "ArrowRight") {
+        setActiveDetailIndex((current) => (current === null ? 0 : (current + 1) % digitalDocumentSteps.length));
+      }
+
+      if (event.key === "ArrowLeft") {
+        setActiveDetailIndex((current) =>
+          current === null ? 0 : (current - 1 + digitalDocumentSteps.length) % digitalDocumentSteps.length,
+        );
+      }
+    };
+
+    window.addEventListener("keydown", handleArrowNavigation);
+
+    return () => {
+      window.removeEventListener("keydown", handleArrowNavigation);
+      document.body.style.overflow = "";
+    };
+  }, [activeDetailIndex]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -290,7 +261,6 @@ function App() {
           </a>
 
           <div className="nav-links">
-            <a href="#produkt">Produkt</a>
             <a href="#funktionen">Funktionen</a>
             <a href="#pricing">Pricing</a>
             <a href="#anfrage">Demo anfragen</a>
@@ -330,66 +300,12 @@ function App() {
               imageAlt="Startseite von TeamWork 365"
               className="hero-main-shot"
               onOpen={(src, alt) => setActiveImage({ src, alt })}
-            >
-              <figcaption className="shot-badge">Live in der Anwendung</figcaption>
-            </MediaFrame>
+            />
           </aside>
         </div>
       </header>
 
       <main>
-        <section className="section section-showcase" id="produkt" data-reveal="up">
-          <div className="section-heading section-heading-wide">
-            <div>
-              <p className="eyebrow">Produkteindruck</p>
-              <h2>So sieht TeamWork 365 aus.</h2>
-            </div>
-            <p>
-              Im Fokus stehen echte Produktbausteine wie Dashboard, Featureadministration, digitale Belege und Sales-nahe Prozesse statt abstrakter Marketingfloskeln.
-            </p>
-          </div>
-
-          <div className="showcase-slideshow" data-reveal="up">
-            <div className="slideshow-stage">
-              {slideshowImages.map((item, index) => (
-                <div className={`slideshow-slide ${index === activeSlide ? "is-active" : ""}`} key={item.title}>
-                  <MediaFrame image={item.image} imageAlt={item.imageAlt} className="showcase-frame" onOpen={(src, alt) => setActiveImage({ src, alt })} />
-                </div>
-              ))}
-            </div>
-
-            <div className="slideshow-meta">
-              <div>
-                <p className="eyebrow">{slideshowImages[activeSlide].title}</p>
-                <p className="slideshow-description">{slideshowImages[activeSlide].description}</p>
-              </div>
-
-              <div className="slideshow-controls" aria-label="Produktbilder">
-                {slideshowImages.map((item, index) => (
-                  <button
-                    key={item.title}
-                    type="button"
-                    className={`slideshow-dot ${index === activeSlide ? "is-active" : ""}`}
-                    onClick={() => setActiveSlide(index)}
-                    aria-label={`Slide ${index + 1}: ${item.title}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="showcase-grid">
-            {showcaseImages.map((item) => (
-              <article className={`showcase-card showcase-card-${item.size}`} key={item.title} data-reveal="up">
-                <MediaFrame image={item.image} imageAlt={item.imageAlt} className="showcase-frame showcase-frame-compact" onOpen={(src, alt) => setActiveImage({ src, alt })} />
-                <div className="showcase-label">
-                  <span>{item.title}</span>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section className="section section-stories" id="funktionen" data-reveal="up">
           <div className="section-heading narrow">
             <p className="eyebrow">Funktionsumfang</p>
@@ -425,9 +341,22 @@ function App() {
             </div>
 
             <div className="digital-documents-grid">
-              {digitalDocumentSteps.map((step) => (
-                <article className="digital-doc-card" key={step.title} data-reveal="up">
-                  <MediaFrame image={step.image} imageAlt={step.imageAlt} className="digital-doc-frame" onOpen={(src, alt) => setActiveImage({ src, alt })} />
+              {digitalDocumentSteps.map((step, index) => (
+                <article
+                  className="digital-doc-card"
+                  key={step.title}
+                  data-reveal="up"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setActiveDetailIndex(index)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setActiveDetailIndex(index);
+                    }
+                  }}
+                >
+                  <MediaFrame image={step.image} imageAlt={step.imageAlt} className="digital-doc-frame" />
                   <div className="digital-doc-copy">
                     <h3>{step.title}</h3>
                     <p>{step.text}</p>
@@ -595,6 +524,63 @@ function App() {
           </button>
           <div className="lightbox-inner" onClick={(event) => event.stopPropagation()}>
             <img src={activeImage.src} alt={activeImage.alt} />
+          </div>
+        </div>
+      ) : null}
+
+      {activeDetailIndex !== null ? (
+        <div
+          className="detail-slider-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label={digitalDocumentSteps[activeDetailIndex].title}
+          onClick={() => setActiveDetailIndex(null)}
+        >
+          <button className="lightbox-close" type="button" onClick={() => setActiveDetailIndex(null)} aria-label="Detailansicht schließen">
+            ×
+          </button>
+          <div className="detail-slider" onClick={(event) => event.stopPropagation()}>
+            <button
+              className="slider-arrow slider-arrow-left"
+              type="button"
+              onClick={() => setActiveDetailIndex((activeDetailIndex - 1 + digitalDocumentSteps.length) % digitalDocumentSteps.length)}
+              aria-label="Vorheriges Bild"
+            >
+              ‹
+            </button>
+
+            <div className="detail-slider-content">
+              <MediaFrame
+                image={digitalDocumentSteps[activeDetailIndex].image}
+                imageAlt={digitalDocumentSteps[activeDetailIndex].imageAlt}
+                className="detail-slider-frame"
+              />
+              <div className="detail-slider-copy">
+                <p className="eyebrow">Digitale Belege</p>
+                <h3>{digitalDocumentSteps[activeDetailIndex].title}</h3>
+                <p>{digitalDocumentSteps[activeDetailIndex].text}</p>
+                <div className="detail-slider-pagination">
+                  {digitalDocumentSteps.map((step, index) => (
+                    <button
+                      key={step.title}
+                      type="button"
+                      className={`slideshow-dot ${index === activeDetailIndex ? "is-active" : ""}`}
+                      onClick={() => setActiveDetailIndex(index)}
+                      aria-label={`Schritt ${index + 1}: ${step.title}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <button
+              className="slider-arrow slider-arrow-right"
+              type="button"
+              onClick={() => setActiveDetailIndex((activeDetailIndex + 1) % digitalDocumentSteps.length)}
+              aria-label="Nächstes Bild"
+            >
+              ›
+            </button>
           </div>
         </div>
       ) : null}
