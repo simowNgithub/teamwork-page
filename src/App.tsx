@@ -293,15 +293,6 @@ function App() {
               ))}
             </div>
           </section>
-
-          <aside className="hero-stage">
-            <MediaFrame
-              image={imagePath("tw365-header.webp")}
-              imageAlt="Startseite von TeamWork 365"
-              className="hero-main-shot"
-              onOpen={(src, alt) => setActiveImage({ src, alt })}
-            />
-          </aside>
         </div>
       </header>
 
