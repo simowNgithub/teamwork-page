@@ -45,6 +45,10 @@ img {
   max-width: 100%;
 }
 
+figure {
+  margin: 0;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -392,6 +396,7 @@ h3 {
 .function-card {
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: clamp(220px, 19vw, 300px) auto;
   gap: 0;
   align-items: start;
   padding: 0;
@@ -419,7 +424,7 @@ h3 {
 }
 
 .story-frame {
-  aspect-ratio: 16 / 10;
+  height: 100%;
   border-radius: 0;
 }
 
@@ -431,6 +436,7 @@ h3 {
 .story-frame img {
   height: 100%;
   object-fit: contain;
+  object-position: top center;
 }
 
 .story-points,
@@ -805,6 +811,10 @@ h3 {
     padding: 0;
   }
 
+  .function-card {
+    grid-template-rows: clamp(220px, 34vw, 320px) auto;
+  }
+
   .contact-copy {
     max-width: 100%;
   }
@@ -1071,6 +1081,10 @@ h3 {
   .function-card,
   .digital-doc-card {
     padding: 0;
+  }
+
+  .function-card {
+    grid-template-rows: auto auto;
   }
 
   .function-card,
