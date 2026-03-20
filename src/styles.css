@@ -402,12 +402,15 @@ h3 {
 }
 
 .story-copy {
+  display: flex;
+  flex-direction: column;
   max-width: 100%;
   padding: 20px 18px 22px;
 }
 
 .story-copy .eyebrow {
-  min-height: 2.6em;
+  min-height: 3.2em;
+  line-height: 1.2;
   margin-bottom: 10px;
 }
 
@@ -1091,8 +1094,8 @@ h3 {
   }
 
   .integration-card img {
-    width: calc(100% + 2px);
-    height: 100%;
+    width: 82%;
+    height: 58%;
   }
 
   .plan-price-row strong {

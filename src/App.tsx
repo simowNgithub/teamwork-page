@@ -329,11 +329,6 @@ function App() {
 
       <main>
         <section className="section section-stories" id="funktionen" data-reveal="up">
-          <div className="section-heading narrow">
-            <p className="eyebrow">Funktionsumfang</p>
-            <h2>Die wichtigsten Funktionen auf einen Blick.</h2>
-          </div>
-
           <div className="function-grid">
             {functionStories.map((story) => (
               <article className="function-card" key={story.title} data-reveal="up">
