@@ -80,7 +80,38 @@ const pricingPlans = [
   },
 ];
 
-const integrations = ["SAP Business One", "Power Automate", "Zapier", "Typeform", "HubSpot", "Salesforce"];
+const integrations = [
+  {
+    name: "SAP Business One",
+    logo: imagePath("logo-sap-business-one.webp"),
+    alt: "SAP Business One Logo",
+  },
+  {
+    name: "Power Automate",
+    logo: imagePath("logo-power-automate.webp"),
+    alt: "Power Automate Logo",
+  },
+  {
+    name: "Zapier",
+    logo: imagePath("logo-zapier.webp"),
+    alt: "Zapier Logo",
+  },
+  {
+    name: "Typeform",
+    logo: imagePath("logo-typeform.webp"),
+    alt: "Typeform Logo",
+  },
+  {
+    name: "HubSpot",
+    logo: imagePath("logo-hubspot.webp"),
+    alt: "HubSpot Logo",
+  },
+  {
+    name: "Salesforce",
+    logo: imagePath("logo-salesforce.webp"),
+    alt: "Salesforce Logo",
+  },
+];
 
 const stats = [
   { label: "Cloud-Hosting", value: "Deutschland" },
@@ -366,7 +397,10 @@ function App() {
 
           <div className="integration-band">
             {integrations.map((integration) => (
-              <span key={integration}>{integration}</span>
+              <div className="integration-card" key={integration.name}>
+                <img src={integration.logo} alt={integration.alt} />
+                <span>{integration.name}</span>
+              </div>
             ))}
           </div>
         </section>
