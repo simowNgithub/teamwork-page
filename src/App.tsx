@@ -23,43 +23,55 @@ const imagePath = (fileName: string) => `${import.meta.env.BASE_URL}images/${fil
 
 const showcaseImages = [
   {
-    title: "SAP Business One im Browser erweitert",
-    image: imagePath("tw365-header.webp"),
-    imageAlt: "Startseite von TeamWork 365",
+    title: "Angebot im Kundenportal",
+    image: imagePath("tw365-doc-overview.png"),
+    imageAlt: "Digitales Angebot in TeamWork 365",
     size: "large",
   },
   {
-    title: "Dashboard & Featuresteuerung",
-    image: imagePath("tw365-dashboard.webp"),
-    imageAlt: "Dashboard in TeamWork 365",
+    title: "E-Mail-Vorschau",
+    image: imagePath("tw365-doc-mail-preview.png"),
+    imageAlt: "E-Mail-Vorschau in TeamWork 365",
     size: "small",
   },
   {
-    title: "Digitale Belege & Angebote",
-    image: imagePath("tw365-sales.webp"),
-    imageAlt: "Angebotsansicht in TeamWork 365",
+    title: "Kundenauftrag aus Angebot",
+    image: imagePath("tw365-doc-customer-order.png"),
+    imageAlt: "Weiterführung zum Kundenauftrag in SAP Business One",
     size: "small",
   },
 ];
 
 const slideshowImages = [
   {
-    title: "Startseite & Navigation",
-    description: "Zentrale Oberfläche für Teams im erweiterten SAP Business One Web Client.",
-    image: imagePath("tw365-header.webp"),
-    imageAlt: "Startseite von TeamWork 365",
+    title: "Digitales Angebot",
+    description: "Kunden sehen das Angebot direkt im Browser und können reagieren.",
+    image: imagePath("tw365-doc-overview.png"),
+    imageAlt: "Digitales Angebot in TeamWork 365",
   },
   {
-    title: "Dashboard & Steuerung",
-    description: "Kennzahlen, Links und Featureadministration in einer Ansicht.",
-    image: imagePath("tw365-dashboard.webp"),
-    imageAlt: "Dashboard in TeamWork 365",
+    title: "Mengen & Alternativen",
+    description: "Positionen lassen sich anpassen, ohne das Ursprungsangebot in SAP zu verändern.",
+    image: imagePath("tw365-doc-edit-quantity.png"),
+    imageAlt: "Anpassung von Mengen im digitalen Angebot",
   },
   {
-    title: "Digitale Belege",
-    description: "Angebote und Aufträge digital bereitstellen, teilen und annehmen.",
-    image: imagePath("tw365-sales.webp"),
-    imageAlt: "Digitale Belege in TeamWork 365",
+    title: "Beauftragen",
+    description: "Annahme mit Pflichtangaben, Rechtsbestätigung und Bemerkung.",
+    image: imagePath("tw365-doc-order-popup.png"),
+    imageAlt: "Beauftragen-Popup im digitalen Angebot",
+  },
+  {
+    title: "E-Mail-Vorschau",
+    description: "Versand, Vorschau und Freigabe laufen direkt am Beleg.",
+    image: imagePath("tw365-doc-mail-preview.png"),
+    imageAlt: "E-Mail-Vorschau im digitalen Angebot",
+  },
+  {
+    title: "Weiterführung",
+    description: "Das Angebot wird direkt in einen Kundenauftrag in SAP Business One überführt.",
+    image: imagePath("tw365-doc-customer-order.png"),
+    imageAlt: "Kundenauftrag auf Basis des Angebots in SAP Business One",
   },
 ];
 
@@ -82,7 +94,7 @@ const functionStories = [
       "Alle Belegdaten in Echtzeit direkt aus SAP Business One laden",
       "Interne und externe Benachrichtigungen abhängig von SMTP- und Mandantenkonfiguration",
     ],
-    image: imagePath("tw365-sales.webp"),
+    image: imagePath("tw365-doc-overview.png"),
     imageAlt: "Angebotsansicht in TeamWork 365",
   },
   {
@@ -128,6 +140,33 @@ const stats = [
   { label: "Cloud-Hosting", value: "Deutschland" },
   { label: "Kostenlos testen", value: "30 Tage" },
   { label: "Integrationsansatz", value: "API-first" },
+];
+
+const digitalDocumentSteps = [
+  {
+    title: "Beauftragen, ändern oder ablehnen",
+    text: "Im externen Angebot kann der Empfänger das Angebot annehmen, mit Änderungen beantworten oder ablehnen. Für jede Reaktion werden Name, E-Mail und optional eine Bemerkung erfasst.",
+    image: imagePath("tw365-doc-order-popup.png"),
+    imageAlt: "Beauftragen-Popup mit Pflichtfeldern in TeamWork 365",
+  },
+  {
+    title: "Mengen und Alternativartikel anpassen",
+    text: "Bestimmte Positionen können im Angebot geändert oder als Alternativartikel gewählt werden, ohne dass sich das Ursprungsangebot im SAP verändert. Zwischensummen und Gesamtsummen bleiben dabei unverändert.",
+    image: imagePath("tw365-doc-edit-quantity.png"),
+    imageAlt: "Mengenanpassung im digitalen Angebot",
+  },
+  {
+    title: "Änderungsverlauf nachvollziehen",
+    text: "Der Verlauf dokumentiert, wann der Link geöffnet wurde, welche Mengen geändert wurden, ob das Angebot angenommen oder abgelehnt wurde und welche Kommentare hinterlegt sind.",
+    image: imagePath("tw365-doc-overview.png"),
+    imageAlt: "Übersicht des digitalen Angebots mit Verlauf",
+  },
+  {
+    title: "Zum Kundenauftrag weiterführen",
+    text: "Aus dem Angebot wird direkt ein Entwurf für einen Kundenauftrag in SAP Business One erzeugt. Positionen, Mengen, Preise und Frachtkosten werden automatisch übernommen, optional auch geänderte Mengen und Alternativartikel.",
+    image: imagePath("tw365-doc-customer-order.png"),
+    imageAlt: "Kundenauftrag in SAP Business One auf Basis des Angebots",
+  },
 ];
 
 const initialFormState: FormState = {
@@ -374,6 +413,28 @@ function App() {
                 <MediaFrame image={story.image} imageAlt={story.imageAlt} className="story-frame" onOpen={(src, alt) => setActiveImage({ src, alt })} />
               </article>
             ))}
+          </div>
+
+          <div className="digital-documents-panel" data-reveal="up">
+            <div className="section-heading narrow">
+              <p className="eyebrow">Digitale Belege im Detail</p>
+              <h2>Der Ablauf von Angebot bis Kundenauftrag.</h2>
+              <p>
+                Basierend auf der bereitgestellten PDF „Digitales Angebot - Beauftragen, Bearbeiten, Ablehnen“ zeigt dieser Bereich die wichtigsten Prozessschritte der digitalen Belegbearbeitung.
+              </p>
+            </div>
+
+            <div className="digital-documents-grid">
+              {digitalDocumentSteps.map((step) => (
+                <article className="digital-doc-card" key={step.title} data-reveal="up">
+                  <MediaFrame image={step.image} imageAlt={step.imageAlt} className="digital-doc-frame" onOpen={(src, alt) => setActiveImage({ src, alt })} />
+                  <div className="digital-doc-copy">
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 

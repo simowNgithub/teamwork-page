@@ -71,6 +71,7 @@ textarea {
 .showcase-grid,
 .showcase-slideshow,
 .function-grid,
+.digital-documents-grid,
 .pricing-grid,
 .contact-layout {
   width: min(1220px, 100%);
@@ -455,6 +456,39 @@ h3 {
   min-height: 280px;
 }
 
+.digital-documents-panel {
+  margin-top: 56px;
+}
+
+.digital-documents-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.digital-doc-card {
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+}
+
+.digital-doc-frame {
+  aspect-ratio: 16 / 10;
+}
+
+.digital-doc-copy h3 {
+  margin-bottom: 10px;
+}
+
+.digital-doc-copy p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
 .showcase-label {
   padding: 14px 6px 4px;
   color: var(--text-soft);
@@ -733,6 +767,7 @@ h3 {
   .showcase-slideshow,
   .showcase-grid,
   .function-grid,
+  .digital-documents-grid,
   .pricing-grid,
   .integration-band,
   .contact-layout {
@@ -802,6 +837,7 @@ h3 {
 
   .showcase-frame,
   .story-frame,
+  .digital-doc-frame,
   .contact-shot {
     aspect-ratio: 16 / 11;
   }
