@@ -276,9 +276,9 @@ h3 {
 }
 
 .media-frame img {
-  height: 100%;
-  object-fit: contain;
-  padding: 6px;
+  height: auto;
+  object-fit: initial;
+  padding: 0;
   background: transparent;
 }
 
@@ -349,7 +349,7 @@ h3 {
 }
 
 .digital-doc-frame {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: auto;
 }
 
 .digital-doc-copy h3 {
@@ -394,7 +394,7 @@ h3 {
 }
 
 .story-frame {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: auto;
 }
 
 .story-points,
@@ -521,7 +521,7 @@ h3 {
 
 .contact-shot {
   margin-top: 26px;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: auto;
 }
 
 .contact-caption {
@@ -648,7 +648,7 @@ h3 {
 }
 
 .detail-slider-frame {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: auto;
 }
 
 .detail-slider-copy {
@@ -868,7 +868,7 @@ h3 {
   .digital-doc-frame,
   .detail-slider-frame,
   .contact-shot {
-    aspect-ratio: 16 / 11;
+    aspect-ratio: auto;
   }
 
   .media-frame img {
