@@ -24,7 +24,7 @@ const imagePath = (fileName: string) => `${import.meta.env.BASE_URL}images/${fil
 const functionStories = [
   {
     eyebrow: "SAP Web Client",
-    title: "TeamWork 365 erweitert den SAP Business One Web Client zu einer Arbeitsoberfläche für Teams.",
+    title: "Mehr Oberfläche für Teams.",
     text: "Dashboard, Web-Client-Integration und Mandantenadministration bringen Prozesse, Links und Featuresteuerung in eine zentrale Oberfläche.",
     bullets: ["Direkte Integration in den SAP Web Client", "Featureadministration pro Mandant", "Schneller Überblick für Vertrieb, Service und Innendienst"],
     image: imagePath("tw365-dashboard.webp"),
@@ -32,7 +32,7 @@ const functionStories = [
   },
   {
     eyebrow: "Digitale Belege",
-    title: "Digitale Belege laufen vom Versand bis zur Annahme in einem durchgängigen Prozess.",
+    title: "Digitale Belege im Flow.",
     text: "TeamWork 365 unterstützt digitale Belege wie E-Angebot, E-Kundenauftrag, E-Rechnung, E-Lieferschein und E-Gutschrift mit Echtzeitdaten aus SAP Business One.",
     bullets: [
       "Belege direkt anzeigen, per E-Mail versenden und als Vorschau bereitstellen",
@@ -45,7 +45,7 @@ const functionStories = [
   },
   {
     eyebrow: "CRM, Adressen & Leads",
-    title: "Geschäftspartner, Ansprechpartner, Adresspool und Leads bleiben in einem durchgängigen Sales-Prozess.",
+    title: "CRM und Leads in einem Flow.",
     text: "Standard, Pro und Premium bauen funktional aufeinander auf: von Geschäftspartnern und Ansprechpartnern bis zur Lead-Bearbeitung und dem Adresspool für Sales-Teams.",
     bullets: ["Geschäftspartner und Ansprechpartner verwalten", "Adresspool und Lead-Bearbeitung in Premium", "E-Mail-Versand über konfigurierbaren SMTP"],
     image: imagePath("tw365-techniker.webp"),
@@ -203,8 +203,8 @@ function App() {
         });
       },
       {
-        threshold: 0.16,
-        rootMargin: "0px 0px -8% 0px",
+        threshold: 0.08,
+        rootMargin: "0px 0px -2% 0px",
       },
     );
 
@@ -337,6 +337,8 @@ function App() {
           <div className="function-grid">
             {functionStories.map((story) => (
               <article className="function-card" key={story.title} data-reveal="up">
+                <MediaFrame image={story.image} imageAlt={story.imageAlt} className="story-frame" onOpen={(src, alt) => setActiveImage({ src, alt })} />
+
                 <div className="story-copy">
                   <p className="eyebrow">{story.eyebrow}</p>
                   <h3>{story.title}</h3>
@@ -347,8 +349,6 @@ function App() {
                     ))}
                   </ul>
                 </div>
-
-                <MediaFrame image={story.image} imageAlt={story.imageAlt} className="story-frame" onOpen={(src, alt) => setActiveImage({ src, alt })} />
               </article>
             ))}
           </div>
@@ -357,9 +357,7 @@ function App() {
             <div className="section-heading narrow">
               <p className="eyebrow">Digitale Belege im Detail</p>
               <h2>Der Ablauf von Angebot bis Kundenauftrag.</h2>
-              <p>
-                Basierend auf der bereitgestellten PDF „Digitales Angebot - Beauftragen, Bearbeiten, Ablehnen“ zeigt dieser Bereich die wichtigsten Prozessschritte der digitalen Belegbearbeitung.
-              </p>
+              <p>Basierend auf der bereitgestellten PDF „Digitales Angebot - Beauftragen, Bearbeiten, Ablehnen“ zeigt dieser Bereich die wichtigsten Prozessschritte der digitalen Belegbearbeitung.</p>
             </div>
 
             <div className="digital-documents-grid">
@@ -441,16 +439,9 @@ function App() {
             <div className="contact-copy">
               <p className="eyebrow">Demo oder Präsentation</p>
               <h2>TeamWork 365 live erleben.</h2>
-              <p>
-                Besucher können direkt einen Demozugang oder eine Präsentation anfragen, um digitale Belege, Geschäftspartnerverwaltung, Lead-Bearbeitung und die SAP-Web-Client-Integration live zu erleben.
-              </p>
+              <p>Besucher können direkt einen Demozugang oder eine Präsentation anfragen, um digitale Belege, Geschäftspartnerverwaltung, Lead-Bearbeitung und die SAP-Web-Client-Integration live zu erleben.</p>
 
-              <MediaFrame
-                image={imagePath("tw365-techniker.webp")}
-                imageAlt="TeamWork 365 in der Serviceansicht"
-                className="contact-shot"
-                onOpen={(src, alt) => setActiveImage({ src, alt })}
-              >
+              <MediaFrame image={imagePath("tw365-techniker.webp")} imageAlt="TeamWork 365 in der Serviceansicht" className="contact-shot" onOpen={(src, alt) => setActiveImage({ src, alt })}>
                 <figcaption className="contact-caption">Aktuell wird die Anfrage per lokalem Mailprogramm an `info@teamwork365.de` vorbereitet.</figcaption>
               </MediaFrame>
             </div>
@@ -458,45 +449,22 @@ function App() {
             <form className="request-form" onSubmit={handleSubmit}>
               <label>
                 Name
-                <input
-                  required
-                  type="text"
-                  value={formState.name}
-                  onChange={(event) => setFormState({ ...formState, name: event.target.value })}
-                  placeholder="Max Mustermann"
-                />
+                <input required type="text" value={formState.name} onChange={(event) => setFormState({ ...formState, name: event.target.value })} placeholder="Max Mustermann" />
               </label>
 
               <label>
                 Unternehmen
-                <input
-                  required
-                  type="text"
-                  value={formState.company}
-                  onChange={(event) => setFormState({ ...formState, company: event.target.value })}
-                  placeholder="Musterfirma GmbH"
-                />
+                <input required type="text" value={formState.company} onChange={(event) => setFormState({ ...formState, company: event.target.value })} placeholder="Musterfirma GmbH" />
               </label>
 
               <label>
                 E-Mail
-                <input
-                  required
-                  type="email"
-                  value={formState.email}
-                  onChange={(event) => setFormState({ ...formState, email: event.target.value })}
-                  placeholder="name@unternehmen.de"
-                />
+                <input required type="email" value={formState.email} onChange={(event) => setFormState({ ...formState, email: event.target.value })} placeholder="name@unternehmen.de" />
               </label>
 
               <label>
                 Gewünschte Nutzerzahl
-                <input
-                  type="text"
-                  value={formState.users}
-                  onChange={(event) => setFormState({ ...formState, users: event.target.value })}
-                  placeholder="z. B. 15"
-                />
+                <input type="text" value={formState.users} onChange={(event) => setFormState({ ...formState, users: event.target.value })} placeholder="z. B. 15" />
               </label>
 
               <label>
@@ -536,13 +504,7 @@ function App() {
       </main>
 
       {activeImage ? (
-        <div
-          className="lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label={activeImage.alt}
-          onClick={() => setActiveImage(null)}
-        >
+        <div className="lightbox" role="dialog" aria-modal="true" aria-label={activeImage.alt} onClick={() => setActiveImage(null)}>
           <button className="lightbox-close" type="button" onClick={() => setActiveImage(null)} aria-label="Bild schließen">
             ×
           </button>
@@ -574,11 +536,7 @@ function App() {
             </button>
 
             <div className="detail-slider-content">
-              <MediaFrame
-                image={digitalDocumentSteps[activeDetailIndex].image}
-                imageAlt={digitalDocumentSteps[activeDetailIndex].imageAlt}
-                className="detail-slider-frame"
-              />
+              <MediaFrame image={digitalDocumentSteps[activeDetailIndex].image} imageAlt={digitalDocumentSteps[activeDetailIndex].imageAlt} className="detail-slider-frame" />
               <div className="detail-slider-copy">
                 <p className="eyebrow">Digitale Belege</p>
                 <h3>{digitalDocumentSteps[activeDetailIndex].title}</h3>
