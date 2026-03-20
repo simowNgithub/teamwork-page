@@ -16,6 +16,7 @@ type MediaFrameProps = {
   imageAlt: string;
   className?: string;
   children?: ReactNode;
+  onOpen?: (src: string, alt: string) => void;
 };
 
 const imagePath = (fileName: string) => `${import.meta.env.BASE_URL}images/${fileName}`;
@@ -112,9 +113,24 @@ const initialFormState: FormState = {
   message: "",
 };
 
-function MediaFrame({ image, imageAlt, className = "", children }: MediaFrameProps) {
+function MediaFrame({ image, imageAlt, className = "", children, onOpen }: MediaFrameProps) {
   return (
-    <figure className={`media-frame ${className}`.trim()}>
+    <figure
+      className={`media-frame ${className}`.trim()}
+      onClick={() => onOpen?.(image, imageAlt)}
+      role={onOpen ? "button" : undefined}
+      tabIndex={onOpen ? 0 : undefined}
+      onKeyDown={
+        onOpen
+          ? (event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                onOpen(image, imageAlt);
+              }
+            }
+          : undefined
+      }
+    >
       <img src={image} alt={imageAlt} />
       {children}
     </figure>
@@ -124,6 +140,7 @@ function MediaFrame({ image, imageAlt, className = "", children }: MediaFramePro
 function App() {
   const [formState, setFormState] = useState<FormState>(initialFormState);
   const [status, setStatus] = useState<"idle" | "success">("idle");
+  const [activeImage, setActiveImage] = useState<{ src: string; alt: string } | null>(null);
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -146,6 +163,26 @@ function App() {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!activeImage) {
+      return undefined;
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveImage(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "";
+    };
+  }, [activeImage]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -189,7 +226,7 @@ function App() {
         <div className="hero-grid">
           <section className="hero-copy">
             <p className="eyebrow">CRM-Erweiterung für den SAP Business One Web Client</p>
-            <h1>TeamWork 365 verbindet SAP Web Client, CRM, digitale Belege und Lead-Prozesse in einer Oberfläche.</h1>
+            <h1>CRM, Belege und Leads in einer Oberfläche.</h1>
             <p className="lead">
               Besucher sehen auf einen Blick, wie TeamWork 365 Geschäftspartner, Ansprechpartner, digitale Angebote, Aufträge, Adresspool und Lead-Bearbeitung in einem durchgängigen Flow zusammenführt.
             </p>
@@ -214,7 +251,12 @@ function App() {
           </section>
 
           <aside className="hero-stage">
-            <MediaFrame image={imagePath("tw365-header.webp")} imageAlt="Startseite von TeamWork 365" className="hero-main-shot">
+            <MediaFrame
+              image={imagePath("tw365-header.webp")}
+              imageAlt="Startseite von TeamWork 365"
+              className="hero-main-shot"
+              onOpen={(src, alt) => setActiveImage({ src, alt })}
+            >
               <figcaption className="shot-badge">Live in der Anwendung</figcaption>
             </MediaFrame>
           </aside>
@@ -226,7 +268,7 @@ function App() {
           <div className="section-heading section-heading-wide">
             <div>
               <p className="eyebrow">Produkteindruck</p>
-              <h2>Die Oberfläche zeigt direkt, wie TeamWork 365 den SAP Business One Web Client fachlich erweitert.</h2>
+              <h2>So sieht TeamWork 365 aus.</h2>
             </div>
             <p>
               Im Fokus stehen echte Produktbausteine wie Dashboard, Featureadministration, digitale Belege und Sales-nahe Prozesse statt abstrakter Marketingfloskeln.
@@ -236,7 +278,7 @@ function App() {
           <div className="showcase-grid">
             {showcaseImages.map((item) => (
               <article className={`showcase-card showcase-card-${item.size}`} key={item.title} data-reveal="up">
-                <MediaFrame image={item.image} imageAlt={item.imageAlt} className="showcase-frame" />
+                <MediaFrame image={item.image} imageAlt={item.imageAlt} className="showcase-frame" onOpen={(src, alt) => setActiveImage({ src, alt })} />
                 <div className="showcase-label">
                   <span>{item.title}</span>
                 </div>
@@ -248,7 +290,7 @@ function App() {
         <section className="section section-stories" id="funktionen" data-reveal="up">
           <div className="section-heading narrow">
             <p className="eyebrow">Funktionsumfang</p>
-            <h2>Die wichtigsten Funktionen von TeamWork 365 in drei klaren Produktbereichen.</h2>
+            <h2>Die wichtigsten Funktionen auf einen Blick.</h2>
           </div>
 
           <div className="function-grid">
@@ -265,7 +307,7 @@ function App() {
                   </ul>
                 </div>
 
-                <MediaFrame image={story.image} imageAlt={story.imageAlt} className="story-frame" />
+                <MediaFrame image={story.image} imageAlt={story.imageAlt} className="story-frame" onOpen={(src, alt) => setActiveImage({ src, alt })} />
               </article>
             ))}
           </div>
@@ -274,7 +316,7 @@ function App() {
         <section className="section section-integrations" data-reveal="up">
           <div className="section-heading narrow">
             <p className="eyebrow">Integrationen</p>
-            <h2>TeamWork 365 bleibt eng mit SAP Business One und Ihrer bestehenden Tool-Landschaft verbunden.</h2>
+            <h2>Nahtlos mit SAP und bestehenden Tools verbunden.</h2>
           </div>
 
           <div className="integration-band">
@@ -287,7 +329,7 @@ function App() {
         <section className="section section-pricing" id="pricing" data-reveal="up">
           <div className="section-heading narrow">
             <p className="eyebrow">Pricing</p>
-            <h2>Drei Produktstufen, die funktional von Standard über Pro bis Premium aufbauen.</h2>
+            <h2>Drei Stufen. Klar aufgebaut.</h2>
           </div>
 
           <div className="pricing-grid">
@@ -320,12 +362,17 @@ function App() {
           <div className="contact-layout">
             <div className="contact-copy">
               <p className="eyebrow">Demo oder Präsentation</p>
-              <h2>TeamWork 365 live zeigen lassen und die passenden Funktionen im Kontext sehen.</h2>
+              <h2>TeamWork 365 live erleben.</h2>
               <p>
                 Besucher können direkt einen Demozugang oder eine Präsentation anfragen, um digitale Belege, Geschäftspartnerverwaltung, Lead-Bearbeitung und die SAP-Web-Client-Integration live zu erleben.
               </p>
 
-              <MediaFrame image={imagePath("tw365-techniker.webp")} imageAlt="TeamWork 365 in der Serviceansicht" className="contact-shot">
+              <MediaFrame
+                image={imagePath("tw365-techniker.webp")}
+                imageAlt="TeamWork 365 in der Serviceansicht"
+                className="contact-shot"
+                onOpen={(src, alt) => setActiveImage({ src, alt })}
+              >
                 <figcaption className="contact-caption">Aktuell wird die Anfrage per lokalem Mailprogramm an `info@teamwork365.de` vorbereitet.</figcaption>
               </MediaFrame>
             </div>
@@ -409,6 +456,23 @@ function App() {
           </div>
         </section>
       </main>
+
+      {activeImage ? (
+        <div
+          className="lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeImage.alt}
+          onClick={() => setActiveImage(null)}
+        >
+          <button className="lightbox-close" type="button" onClick={() => setActiveImage(null)} aria-label="Bild schließen">
+            ×
+          </button>
+          <div className="lightbox-inner" onClick={(event) => event.stopPropagation()}>
+            <img src={activeImage.src} alt={activeImage.alt} />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

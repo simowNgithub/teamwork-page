@@ -263,6 +263,7 @@ h3 {
   overflow: hidden;
   border-radius: 30px;
   background: var(--bg-card-strong);
+  cursor: zoom-in;
   transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
 }
 
@@ -589,6 +590,49 @@ h3 {
   margin: 0;
   color: #89ebb2;
   font-weight: 700;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(4, 5, 8, 0.88);
+  backdrop-filter: blur(12px);
+}
+
+.lightbox-inner {
+  width: min(1200px, 100%);
+  max-height: 88vh;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  background: rgba(17, 18, 24, 0.96);
+  box-shadow: var(--shadow);
+}
+
+.lightbox-inner img {
+  width: 100%;
+  max-height: calc(88vh - 36px);
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(17, 18, 24, 0.92);
+  color: white;
+  font-size: 1.9rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
 [data-reveal] {
