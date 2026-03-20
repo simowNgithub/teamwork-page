@@ -42,6 +42,27 @@ const showcaseImages = [
   },
 ];
 
+const slideshowImages = [
+  {
+    title: "Startseite & Navigation",
+    description: "Zentrale Oberfläche für Teams im erweiterten SAP Business One Web Client.",
+    image: imagePath("tw365-header.webp"),
+    imageAlt: "Startseite von TeamWork 365",
+  },
+  {
+    title: "Dashboard & Steuerung",
+    description: "Kennzahlen, Links und Featureadministration in einer Ansicht.",
+    image: imagePath("tw365-dashboard.webp"),
+    imageAlt: "Dashboard in TeamWork 365",
+  },
+  {
+    title: "Digitale Belege",
+    description: "Angebote und Aufträge digital bereitstellen, teilen und annehmen.",
+    image: imagePath("tw365-sales.webp"),
+    imageAlt: "Digitale Belege in TeamWork 365",
+  },
+];
+
 const functionStories = [
   {
     eyebrow: "SAP Web Client",
@@ -53,9 +74,14 @@ const functionStories = [
   },
   {
     eyebrow: "Digitale Belege",
-    title: "Angebote, Aufträge und weitere Belege werden digital bereitgestellt und verarbeitet.",
-    text: "TeamWork 365 unterstützt digitale Angebote, Kundenaufträge sowie weitere Belegtypen mit Vorschau, E-Mail-Versand, externen Links und digitaler Annahme.",
-    bullets: ["E-Angebot, E-Kundenauftrag, E-Rechnung und mehr", "Belege per Link teilen und digital annehmen", "Echtzeitdaten direkt aus SAP Business One"],
+    title: "Digitale Belege laufen vom Versand bis zur Annahme in einem durchgängigen Prozess.",
+    text: "TeamWork 365 unterstützt digitale Belege wie E-Angebot, E-Kundenauftrag, E-Rechnung, E-Lieferschein und E-Gutschrift mit Echtzeitdaten aus SAP Business One.",
+    bullets: [
+      "Belege direkt anzeigen, per E-Mail versenden und als Vorschau bereitstellen",
+      "Externe Links zum Teilen und zur digitalen Annahme oder Unterschrift",
+      "Alle Belegdaten in Echtzeit direkt aus SAP Business One laden",
+      "Interne und externe Benachrichtigungen abhängig von SMTP- und Mandantenkonfiguration",
+    ],
     image: imagePath("tw365-sales.webp"),
     imageAlt: "Angebotsansicht in TeamWork 365",
   },
@@ -141,6 +167,7 @@ function App() {
   const [formState, setFormState] = useState<FormState>(initialFormState);
   const [status, setStatus] = useState<"idle" | "success">("idle");
   const [activeImage, setActiveImage] = useState<{ src: string; alt: string } | null>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -183,6 +210,14 @@ function App() {
       document.body.style.overflow = "";
     };
   }, [activeImage]);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % slideshowImages.length);
+    }, 4500);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -275,10 +310,39 @@ function App() {
             </p>
           </div>
 
+          <div className="showcase-slideshow" data-reveal="up">
+            <div className="slideshow-stage">
+              {slideshowImages.map((item, index) => (
+                <div className={`slideshow-slide ${index === activeSlide ? "is-active" : ""}`} key={item.title}>
+                  <MediaFrame image={item.image} imageAlt={item.imageAlt} className="showcase-frame" onOpen={(src, alt) => setActiveImage({ src, alt })} />
+                </div>
+              ))}
+            </div>
+
+            <div className="slideshow-meta">
+              <div>
+                <p className="eyebrow">{slideshowImages[activeSlide].title}</p>
+                <p className="slideshow-description">{slideshowImages[activeSlide].description}</p>
+              </div>
+
+              <div className="slideshow-controls" aria-label="Produktbilder">
+                {slideshowImages.map((item, index) => (
+                  <button
+                    key={item.title}
+                    type="button"
+                    className={`slideshow-dot ${index === activeSlide ? "is-active" : ""}`}
+                    onClick={() => setActiveSlide(index)}
+                    aria-label={`Slide ${index + 1}: ${item.title}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div className="showcase-grid">
             {showcaseImages.map((item) => (
               <article className={`showcase-card showcase-card-${item.size}`} key={item.title} data-reveal="up">
-                <MediaFrame image={item.image} imageAlt={item.imageAlt} className="showcase-frame" onOpen={(src, alt) => setActiveImage({ src, alt })} />
+                <MediaFrame image={item.image} imageAlt={item.imageAlt} className="showcase-frame showcase-frame-compact" onOpen={(src, alt) => setActiveImage({ src, alt })} />
                 <div className="showcase-label">
                   <span>{item.title}</span>
                 </div>
