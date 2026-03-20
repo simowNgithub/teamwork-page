@@ -36,6 +36,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
 }
 
 img {
@@ -113,6 +114,7 @@ textarea {
 
 .nav-links {
   display: inline-flex;
+  flex-wrap: wrap;
   gap: 18px;
   color: var(--text-soft);
 }
@@ -196,6 +198,7 @@ h3 {
   justify-content: center;
   min-height: 52px;
   padding: 0 22px;
+  text-align: center;
   border-radius: 999px;
   border: 1px solid transparent;
   transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
@@ -639,6 +642,7 @@ h3 {
   padding: 28px;
   background: rgba(4, 5, 8, 0.92);
   backdrop-filter: blur(12px);
+  overflow-y: auto;
 }
 
 .detail-slider {
@@ -654,6 +658,7 @@ h3 {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 22px;
   align-items: start;
+  width: 100%;
   padding: 18px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 30px;
@@ -695,6 +700,78 @@ h3 {
   font-size: 2rem;
   line-height: 1;
   cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero {
+    padding-bottom: 56px;
+  }
+
+  .section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 11vw, 4.3rem);
+  }
+
+  h2 {
+    font-size: clamp(2rem, 8vw, 3.1rem);
+  }
+
+  h3 {
+    font-size: clamp(1.35rem, 5vw, 1.8rem);
+  }
+
+  .lead,
+  .section-heading p,
+  .story-copy p,
+  .pricing-card p,
+  .contact-copy p,
+  .digital-doc-copy p {
+    font-size: 0.98rem;
+  }
+
+  .hero-actions {
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .hero-stats,
+  .function-grid,
+  .digital-documents-grid,
+  .pricing-grid,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .integration-band {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .function-card,
+  .digital-doc-card,
+  .pricing-card,
+  .request-form {
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .contact-copy {
+    max-width: 100%;
+  }
+
+  .detail-slider-content {
+    padding: 16px;
+    border-radius: 24px;
+  }
 }
 
 [data-reveal] {
@@ -759,13 +836,16 @@ h3 {
   }
 
   .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    border-radius: 28px;
+    position: static;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 22px;
   }
 
   .nav-links {
-    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px 14px;
+    font-size: 0.95rem;
   }
 
   h1,
@@ -774,18 +854,37 @@ h3 {
   }
 
   .hero-grid {
-    gap: 24px;
+    gap: 20px;
+    padding-top: 28px;
   }
 
   .hero-stage {
     min-height: auto;
   }
 
-  .hero-stats,
+  .hero-actions,
   .plan-price-row {
-    grid-template-columns: 1fr;
+    width: 100%;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+  }
+
+  .stat-card {
+    padding: 16px;
+    border-radius: 18px;
   }
 
   .story-frame,
@@ -802,5 +901,93 @@ h3 {
   .detail-slider-overlay,
   .lightbox {
     padding: 18px;
+  }
+
+  .detail-slider-content {
+    gap: 16px;
+  }
+
+  .detail-slider-copy {
+    padding: 0;
+  }
+
+  .lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero,
+  .section {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .topbar {
+    top: 10px;
+    padding: 12px;
+  }
+
+  .brand {
+    font-size: 0.98rem;
+  }
+
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 12vw, 3.2rem);
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 9vw, 2.4rem);
+  }
+
+  h3 {
+    font-size: 1.28rem;
+  }
+
+  .hero-actions .button,
+  .request-form .button {
+    min-height: 48px;
+  }
+
+  .function-card,
+  .digital-doc-card,
+  .pricing-card,
+  .request-form {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .integration-band {
+    grid-template-columns: 1fr;
+  }
+
+  .integration-band span {
+    min-height: 68px;
+    border-radius: 16px;
+  }
+
+  .plan-price-row strong {
+    font-size: 2rem;
+  }
+
+  .detail-slider-overlay,
+  .lightbox {
+    padding: 12px;
+  }
+
+  .lightbox-inner,
+  .detail-slider-content {
+    padding: 12px;
+    border-radius: 18px;
   }
 }
