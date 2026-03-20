@@ -817,12 +817,14 @@ h3 {
     gap: 14px;
     padding: 14px;
     border-radius: 22px;
+    align-items: flex-start;
   }
 
   .nav-links {
     width: 100%;
     gap: 10px 14px;
     font-size: 0.95rem;
+    justify-content: flex-start;
   }
 
   h1,
@@ -833,6 +835,11 @@ h3 {
   .hero-grid {
     gap: 20px;
     padding-top: 28px;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: 12px;
   }
 
   .hero-stage {
@@ -852,6 +859,7 @@ h3 {
 
   .hero-stats {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .eyebrow {
@@ -862,6 +870,32 @@ h3 {
   .stat-card {
     padding: 16px;
     border-radius: 18px;
+    box-shadow: none;
+  }
+
+  .section-heading {
+    margin-bottom: 24px;
+  }
+
+  .function-grid,
+  .digital-documents-grid,
+  .pricing-grid,
+  .contact-layout,
+  .integration-band {
+    gap: 14px;
+  }
+
+  .story-copy,
+  .digital-doc-copy,
+  .pricing-card,
+  .contact-copy {
+    padding: 0;
+  }
+
+  .story-points,
+  .pricing-points {
+    gap: 8px;
+    margin-top: 14px;
   }
 
   .story-frame,
@@ -872,20 +906,32 @@ h3 {
   }
 
   .media-frame img {
-    padding: 4px;
+    padding: 2px;
   }
 
   .detail-slider-overlay,
   .lightbox {
-    padding: 18px;
+    place-items: start;
+    padding: 10px;
   }
 
   .detail-slider-content {
     gap: 16px;
+    min-height: calc(100dvh - 20px);
+    align-content: start;
   }
 
   .detail-slider-copy {
     padding: 0;
+  }
+
+  .detail-slider-pagination {
+    margin-top: 16px;
+  }
+
+  .lightbox-inner {
+    width: 100%;
+    max-height: none;
   }
 
   .lightbox-close {
@@ -944,6 +990,16 @@ h3 {
     border-radius: 20px;
   }
 
+  .function-card,
+  .digital-doc-card,
+  .pricing-card,
+  .request-form,
+  .media-frame,
+  .lightbox-inner,
+  .detail-slider-content {
+    box-shadow: none;
+  }
+
   .integration-band {
     grid-template-columns: 1fr;
   }
@@ -966,5 +1022,11 @@ h3 {
   .detail-slider-content {
     padding: 12px;
     border-radius: 18px;
+  }
+
+  .request-form input,
+  .request-form select,
+  .request-form textarea {
+    padding: 12px 14px;
   }
 }
