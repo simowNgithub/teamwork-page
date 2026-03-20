@@ -18,22 +18,24 @@ type MediaFrameProps = {
   children?: ReactNode;
 };
 
+const imagePath = (fileName: string) => `${import.meta.env.BASE_URL}images/${fileName}`;
+
 const showcaseImages = [
   {
     title: "Zentrale Startseite",
-    image: "/images/tw365-header.webp",
+    image: imagePath("tw365-header.webp"),
     imageAlt: "Startseite von TeamWork 365",
     size: "large",
   },
   {
     title: "Dashboard",
-    image: "/images/tw365-dashboard.webp",
+    image: imagePath("tw365-dashboard.webp"),
     imageAlt: "Dashboard in TeamWork 365",
     size: "small",
   },
   {
     title: "Angebote",
-    image: "/images/tw365-sales.webp",
+    image: imagePath("tw365-sales.webp"),
     imageAlt: "Angebotsansicht in TeamWork 365",
     size: "small",
   },
@@ -45,7 +47,7 @@ const functionStories = [
     title: "Alle relevanten Informationen auf einen Blick.",
     text: "Das Dashboard bündelt Kennzahlen, Links, Aufgaben und Kundenkontext in einer Oberfläche, mit der Teams direkt arbeitsfähig sind.",
     bullets: ["Schneller Einstieg in den Tagesstart", "Transparenter Überblick für Vertrieb und Service", "Weniger Wechsel zwischen Tools und Listen"],
-    image: "/images/tw365-dashboard.webp",
+    image: imagePath("tw365-dashboard.webp"),
     imageAlt: "Dashboard mit Kennzahlen in TeamWork 365",
   },
   {
@@ -53,7 +55,7 @@ const functionStories = [
     title: "Vom ersten Kontakt bis zum konkreten Angebot.",
     text: "Leads, Adresspool und Angebotsprozesse bleiben in einem digitalen Fluss, sodass Marketing und Vertrieb sauber zusammenarbeiten können.",
     bullets: ["Leads und Kontakte zentral verwalten", "Angebote direkt im Browser vorbereiten", "Saubere Übergabe in operative SAP-Prozesse"],
-    image: "/images/tw365-sales.webp",
+    image: imagePath("tw365-sales.webp"),
     imageAlt: "Angebotsansicht in TeamWork 365",
   },
   {
@@ -61,7 +63,7 @@ const functionStories = [
     title: "Kundenkontext auch außerhalb des klassischen ERP-Zugangs.",
     text: "Techniker und Service-Teams sehen Aktivitäten, Status und Notizen dort, wo sie im Alltag wirklich gebraucht werden.",
     bullets: ["CRM-Aktivitäten nachvollziehbar dokumentieren", "Wichtige Kundendaten schneller erreichen", "Bessere Abstimmung zwischen Innen- und Außendienst"],
-    image: "/images/tw365-techniker.webp",
+    image: imagePath("tw365-techniker.webp"),
     imageAlt: "Technikeransicht in TeamWork 365",
   },
 ];
@@ -212,7 +214,7 @@ function App() {
           </section>
 
           <aside className="hero-stage">
-            <MediaFrame image="/images/tw365-header.webp" imageAlt="Startseite von TeamWork 365" className="hero-main-shot">
+            <MediaFrame image={imagePath("tw365-header.webp")} imageAlt="Startseite von TeamWork 365" className="hero-main-shot">
               <figcaption className="shot-badge">Live in der Anwendung</figcaption>
             </MediaFrame>
           </aside>
@@ -323,7 +325,7 @@ function App() {
                 Das Formular bleibt bewusst leichtgewichtig. Besucher können schnell einen Demozugang oder eine Präsentation anfordern, ohne durch zu viele Felder ausgebremst zu werden.
               </p>
 
-              <MediaFrame image="/images/tw365-techniker.webp" imageAlt="TeamWork 365 in der Serviceansicht" className="contact-shot">
+              <MediaFrame image={imagePath("tw365-techniker.webp")} imageAlt="TeamWork 365 in der Serviceansicht" className="contact-shot">
                 <figcaption className="contact-caption">Aktuell wird die Anfrage per lokalem Mailprogramm an `info@teamwork365.de` vorbereitet.</figcaption>
               </MediaFrame>
             </div>
