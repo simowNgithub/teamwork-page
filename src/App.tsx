@@ -22,19 +22,19 @@ const imagePath = (fileName: string) => `${import.meta.env.BASE_URL}images/${fil
 
 const showcaseImages = [
   {
-    title: "Zentrale Startseite",
+    title: "SAP Business One im Browser erweitert",
     image: imagePath("tw365-header.webp"),
     imageAlt: "Startseite von TeamWork 365",
     size: "large",
   },
   {
-    title: "Dashboard",
+    title: "Dashboard & Featuresteuerung",
     image: imagePath("tw365-dashboard.webp"),
     imageAlt: "Dashboard in TeamWork 365",
     size: "small",
   },
   {
-    title: "Angebote",
+    title: "Digitale Belege & Angebote",
     image: imagePath("tw365-sales.webp"),
     imageAlt: "Angebotsansicht in TeamWork 365",
     size: "small",
@@ -43,26 +43,26 @@ const showcaseImages = [
 
 const functionStories = [
   {
-    eyebrow: "Übersicht",
-    title: "Alle relevanten Informationen auf einen Blick.",
-    text: "Das Dashboard bündelt Kennzahlen, Links, Aufgaben und Kundenkontext in einer Oberfläche, mit der Teams direkt arbeitsfähig sind.",
-    bullets: ["Schneller Einstieg in den Tagesstart", "Transparenter Überblick für Vertrieb und Service", "Weniger Wechsel zwischen Tools und Listen"],
+    eyebrow: "SAP Web Client",
+    title: "TeamWork 365 erweitert den SAP Business One Web Client zu einer Arbeitsoberfläche für Teams.",
+    text: "Dashboard, Web-Client-Integration und Mandantenadministration bringen Prozesse, Links und Featuresteuerung in eine zentrale Oberfläche.",
+    bullets: ["Direkte Integration in den SAP Web Client", "Featureadministration pro Mandant", "Schneller Überblick für Vertrieb, Service und Innendienst"],
     image: imagePath("tw365-dashboard.webp"),
     imageAlt: "Dashboard mit Kennzahlen in TeamWork 365",
   },
   {
-    eyebrow: "Lead bis Angebot",
-    title: "Vom ersten Kontakt bis zum konkreten Angebot.",
-    text: "Leads, Adresspool und Angebotsprozesse bleiben in einem digitalen Fluss, sodass Marketing und Vertrieb sauber zusammenarbeiten können.",
-    bullets: ["Leads und Kontakte zentral verwalten", "Angebote direkt im Browser vorbereiten", "Saubere Übergabe in operative SAP-Prozesse"],
+    eyebrow: "Digitale Belege",
+    title: "Angebote, Aufträge und weitere Belege werden digital bereitgestellt und verarbeitet.",
+    text: "TeamWork 365 unterstützt digitale Angebote, Kundenaufträge sowie weitere Belegtypen mit Vorschau, E-Mail-Versand, externen Links und digitaler Annahme.",
+    bullets: ["E-Angebot, E-Kundenauftrag, E-Rechnung und mehr", "Belege per Link teilen und digital annehmen", "Echtzeitdaten direkt aus SAP Business One"],
     image: imagePath("tw365-sales.webp"),
     imageAlt: "Angebotsansicht in TeamWork 365",
   },
   {
-    eyebrow: "Service & Techniker",
-    title: "Kundenkontext auch außerhalb des klassischen ERP-Zugangs.",
-    text: "Techniker und Service-Teams sehen Aktivitäten, Status und Notizen dort, wo sie im Alltag wirklich gebraucht werden.",
-    bullets: ["CRM-Aktivitäten nachvollziehbar dokumentieren", "Wichtige Kundendaten schneller erreichen", "Bessere Abstimmung zwischen Innen- und Außendienst"],
+    eyebrow: "CRM, Adressen & Leads",
+    title: "Geschäftspartner, Ansprechpartner, Adresspool und Leads bleiben in einem durchgängigen Sales-Prozess.",
+    text: "Standard, Pro und Premium bauen funktional aufeinander auf: von Geschäftspartnern und Ansprechpartnern bis zur Lead-Bearbeitung und dem Adresspool für Sales-Teams.",
+    bullets: ["Geschäftspartner und Ansprechpartner verwalten", "Adresspool und Lead-Bearbeitung in Premium", "E-Mail-Versand über konfigurierbaren SMTP"],
     image: imagePath("tw365-techniker.webp"),
     imageAlt: "Technikeransicht in TeamWork 365",
   },
@@ -74,24 +74,24 @@ const pricingPlans = [
     subtitle: "Für kleine Teams bis 3 User",
     price: "6,90 €",
     highlight: false,
-    description: "Der Einstieg für kleine Teams mit CRM-Zugriff, Kundenkontext und digitalen Angeboten.",
-    points: ["Dashboard & Linkzentrale", "Geschäftspartner & Ansprechpartner", "CRM-Aktivitäten"],
+    description: "Der Einstieg in TeamWork 365 Standard für zentrale Oberfläche, CRM-Kontext und die SAP-nahe Zusammenarbeit im Browser.",
+    points: ["Dashboard & SAP-Web-Client-Erweiterung", "Geschäftspartner & Ansprechpartner", "Mandantenweite Featuresteuerung"],
   },
   {
     name: "Pro",
     subtitle: "Für wachsende Teams mit beliebiger Useranzahl",
     price: "9,90 €",
     highlight: true,
-    description: "Das Standardpaket für Vertrieb, Techniker und Marketing mit API-Zugang und erweitertem Prozessfokus.",
-    points: ["Alles aus Starter", "API inklusive", "Auftragsansicht & digitale Prozesse"],
+    description: "TeamWork 365 Pro erweitert Standard um digitale Angebote, digitale Aufträge und mehr operative Vertriebsprozesse.",
+    points: ["Alles aus Standard", "Digitale Angebote & digitale Aufträge", "Geschäftspartner und Ansprechpartner vertieft nutzen"],
   },
   {
     name: "Premium",
     subtitle: "Für Unternehmen mit Portal- und Ökosystem-Fokus",
     price: "19,90 €",
     highlight: false,
-    description: "Für digitale Kundenerlebnisse, externe Szenarien und anspruchsvollere Integrationslandschaften.",
-    points: ["Alles aus Pro", "Adresspool & Leads", "Externe Portal-Szenarien"],
+    description: "TeamWork 365 Premium ergänzt Pro um Adresspool, Lead-Bearbeitung und erweiterte Sales-Szenarien.",
+    points: ["Alles aus Pro", "Adresspool & Lead-Bearbeitung", "Stärkerer Fokus auf Sales-Teams"],
   },
 ];
 
@@ -189,9 +189,9 @@ function App() {
         <div className="hero-grid">
           <section className="hero-copy">
             <p className="eyebrow">CRM-Erweiterung für den SAP Business One Web Client</p>
-            <h1>TeamWork 365 zeigt sich als Produkt, nicht nur als Text.</h1>
+            <h1>TeamWork 365 verbindet SAP Web Client, CRM, digitale Belege und Lead-Prozesse in einer Oberfläche.</h1>
             <p className="lead">
-              Die Seite führt Besucher in einer ruhigen Reihenfolge durch Oberfläche, Funktionen, Preise und die direkte Anfrage für einen Demozugang oder eine Präsentation.
+              Besucher sehen auf einen Blick, wie TeamWork 365 Geschäftspartner, Ansprechpartner, digitale Angebote, Aufträge, Adresspool und Lead-Bearbeitung in einem durchgängigen Flow zusammenführt.
             </p>
 
             <div className="hero-actions">
@@ -226,10 +226,10 @@ function App() {
           <div className="section-heading section-heading-wide">
             <div>
               <p className="eyebrow">Produkteindruck</p>
-              <h2>Ein flüssiger Einstieg über echte Oberflächen statt über lange Erklärblöcke.</h2>
+              <h2>Die Oberfläche zeigt direkt, wie TeamWork 365 den SAP Business One Web Client fachlich erweitert.</h2>
             </div>
             <p>
-              Besucher bekommen zuerst ein Gefühl für die Anwendung. Erst danach folgen Funktionen, Preisstufen und die Kontaktaufnahme.
+              Im Fokus stehen echte Produktbausteine wie Dashboard, Featureadministration, digitale Belege und Sales-nahe Prozesse statt abstrakter Marketingfloskeln.
             </p>
           </div>
 
@@ -248,7 +248,7 @@ function App() {
         <section className="section section-stories" id="funktionen" data-reveal="up">
           <div className="section-heading narrow">
             <p className="eyebrow">Funktionsumfang</p>
-            <h2>Die wichtigsten Einsatzbereiche werden als Bild-Story erzählt.</h2>
+            <h2>Die wichtigsten Funktionen von TeamWork 365 in drei klaren Produktbereichen.</h2>
           </div>
 
           <div className="function-grid">
@@ -274,7 +274,7 @@ function App() {
         <section className="section section-integrations" data-reveal="up">
           <div className="section-heading narrow">
             <p className="eyebrow">Integrationen</p>
-            <h2>TeamWork 365 fügt sich in bestehende Prozesse und Tools ein.</h2>
+            <h2>TeamWork 365 bleibt eng mit SAP Business One und Ihrer bestehenden Tool-Landschaft verbunden.</h2>
           </div>
 
           <div className="integration-band">
@@ -287,7 +287,7 @@ function App() {
         <section className="section section-pricing" id="pricing" data-reveal="up">
           <div className="section-heading narrow">
             <p className="eyebrow">Pricing</p>
-            <h2>Klare Pakete, direkt vergleichbar und ohne visuelles Durcheinander.</h2>
+            <h2>Drei Produktstufen, die funktional von Standard über Pro bis Premium aufbauen.</h2>
           </div>
 
           <div className="pricing-grid">
@@ -320,9 +320,9 @@ function App() {
           <div className="contact-layout">
             <div className="contact-copy">
               <p className="eyebrow">Demo oder Präsentation</p>
-              <h2>Interesse direkt in eine konkrete Anfrage verwandeln.</h2>
+              <h2>TeamWork 365 live zeigen lassen und die passenden Funktionen im Kontext sehen.</h2>
               <p>
-                Das Formular bleibt bewusst leichtgewichtig. Besucher können schnell einen Demozugang oder eine Präsentation anfordern, ohne durch zu viele Felder ausgebremst zu werden.
+                Besucher können direkt einen Demozugang oder eine Präsentation anfragen, um digitale Belege, Geschäftspartnerverwaltung, Lead-Bearbeitung und die SAP-Web-Client-Integration live zu erleben.
               </p>
 
               <MediaFrame image={imagePath("tw365-techniker.webp")} imageAlt="TeamWork 365 in der Serviceansicht" className="contact-shot">
